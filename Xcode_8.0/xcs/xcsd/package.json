@@ -1,0 +1,50 @@
+{
+  "name": "xcs",
+  "version": "3.0.0",
+  "description": "Xcode Server",
+  "dependencies": {
+    "async": "^1.4.2",
+    "basic-auth": "^1.0.3",
+    "bindings": "^1.2.1",
+    "bluebird": "^3.1.1",
+    "body-parser": "^1.14.1",
+    "colors": "1.1.2",
+    "compression": "^1.6.0",
+    "config": "^1.16.0",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "express-session": "1.11.3",
+    "handlebars": "^3.0.3",
+    "ioredis": "^1.9.1",
+    "method-override": "^2.3.5",
+    "mkdirp": "0.5.1",
+    "multer": "^1.0.6",
+    "nan": "^2.1.0",
+    "nano": "^6.1.5",
+    "node-resque": "^1.1.0",
+    "node-uuid": "1.4.3",
+    "nodemailer": "^1.8.0",
+    "nodemailer-sendmail-transport": "^1.0.0",
+    "nodobjc": "tootallnate/NodObjC#e4e3e2fac301fb3f5eb0bc4714850f6b7b1db29d",
+    "request": "^2.65.0",
+    "serve-static": "1.10.0",
+    "socket.io": "^0.9.16",
+    "speedsnitch": "0.1.0",
+    "underscore": "1.8.3",
+    "ws": "^1.1.0"
+  },
+  "devDependencies": {
+    "heapdump": "^0.3.7",
+    "memwatch": "0.2.2",
+    "mocha": "^2.4.5",
+    "node-gyp": "^3.0.3",
+    "speedsnitch": "0.1.0",
+    "supertest": "^1.1.0",
+    "ws": "^0.8.0"
+  },
+  "engine": "node >= 0.10.21",
+  "scripts": {
+    "start": "sudo node app.js",
+    "test": "bin/test"
+  }
+}

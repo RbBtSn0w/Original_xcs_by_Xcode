@@ -1,0 +1,55 @@
+{
+    "_id": "_design/integration",
+    "views": {
+        "all-integrations": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc._id) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc._id], null); } emit(doc._id, { _id: doc._id, _rev: doc._rev }); } }"
+        },
+        "all-integrations-by-bot": {
+            "map": "function(doc) { if (doc.doc_type == 'integration') { if (doc.xcsunittest) { if (doc.bot._id) { emit([doc.xcsunittest, doc.bot._id], null); } if (doc.bot.tinyID) { emit([doc.xcsunittest, doc.bot.tinyID], null); } } else { if (doc.bot._id) { emit(doc.bot._id, { _id: doc._id, _rev: doc._rev }); } if (doc.bot.tinyID) { emit(doc.bot.tinyID, { _id: doc._id, _rev: doc._rev }); } } } }"
+        },
+        "by-step": {
+            "map": "function(doc) { if (doc.doc_type == 'integration') { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.currentStep], null); } emit([doc.currentStep, doc._id], null); } }"
+        },
+        "perf-metric-for-test-for-integration-for-device": {
+            "map": "function(doc) { if (doc.doc_type == 'test' && doc.integration && doc.keyPath && doc.perfMetrics && doc.path && doc.path.length > 0) { emit([doc.integration, doc.keyPath], doc.perfMetrics); } }"
+        },
+        "aggregate-state": {
+            "map": "function(doc) { if (doc.doc_type == 'test' && doc.path && doc.integration) { var index = doc.path.slice(); index.splice(0, 0, doc.integration); emit(index, doc.passed); } }",
+            "reduce": "function(key, values, rereduce) { return sum(values)/values.length; }"
+        },
+        "integration-test-info": {
+            "map": "function(doc) { if (doc.doc_type == 'test' && doc.integration && doc.keyPath && doc.deviceIdentifier) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.integration, doc.keyPath, doc.deviceIdentifier], null); } emit([doc.integration, doc.keyPath, doc.deviceIdentifier], null); } }"
+        },
+        "integrations-by-number": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id) { if (doc.xcsunittest) { if (doc.bot._id) { emit([doc.xcsunittest, doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.xcsunittest, doc.bot.tinyID, doc.number], doc.number); } } if (doc.bot._id) { emit([doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.bot.tinyID, doc.number], doc.number); } } }"
+        },
+        "non-fatal-integrations-by-number": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id && doc.result && doc.currentStep == 'completed') { var resultsWeCareAbout = ['succeeded', 'test-failures', 'build-errors', 'warnings', 'analyzer-warnings', 'build-failed']; if (resultsWeCareAbout.indexOf(doc.result) !== -1) { if (doc.xcsunittest) { if (doc.bot._id) { emit([doc.xcsunittest, doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.xcsunittest, doc.bot.tinyID, doc.number], doc.number); } } if (doc.bot._id) { emit([doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.bot.tinyID, doc.number], doc.number); } } } }"
+        },
+        "orphaned": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep != 'completed') { emit(doc.buildServiceFingerprint, null); } }"
+        },
+        "last-integration": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id) { if (doc.xcsunittest) { if (doc.bot._id) { emit([doc.xcsunittest, doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.xcsunittest, doc.bot.tinyID, doc.number], doc.number); } } if (doc.bot._id) { emit([doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.bot.tinyID, doc.number], doc.number); } } }",
+            "reduce": "function(key, values) { var max = -Infinity; for (var i = 0; i < values.length; i++) if (typeof values[i] == 'number') { max = Math.max(values[i], max); } return max; }"
+        },
+        "last-non-fatal-integration": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id && doc.result && doc.currentStep == 'completed') { var resultsWeCareAbout = ['succeeded', 'test-failures', 'build-errors', 'warnings', 'analyzer-warnings', 'build-failed']; if (resultsWeCareAbout.indexOf(doc.result) !== -1) { if (doc.xcsunittest) { if (doc.bot._id) { emit([doc.xcsunittest, doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.xcsunittest, doc.bot.tinyID, doc.number], doc.number); } } if (doc.bot._id) { emit([doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.bot.tinyID, doc.number], doc.number); } } } }",
+            "reduce": "function(key, values) { var max = -Infinity; for (var i = 0; i < values.length; i++) if (typeof values[i] == 'number') { max = Math.max(values[i], max); } return max; }"
+        },
+        "last-non-fatal-integration-with-buildResultSummary": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id && doc.result && doc.currentStep == 'completed' && doc.buildResultSummary) { if (doc.xcsunittest) { if (doc.bot._id) { emit([doc.xcsunittest, doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.xcsunittest, doc.bot.tinyID, doc.number], doc.number); } } if (doc.bot._id) { emit([doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.bot.tinyID, doc.number], doc.number); } } }",
+            "reduce": "function(key, values) { var max = -Infinity; for (var i = 0; i < values.length; i++) if (typeof values[i] == 'number') { max = Math.max(values[i], max); } return max; }"
+        },
+        "integration-subdocuments": {
+            "map": "function(doc) { if (doc.integrationSubDocUUID) { emit(doc.integrationSubDocUUID, null); } }"
+        },
+        "asset-size-by-date": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.assets && !doc.assetsPruned) { for (var key in doc.assets) { var asset = doc.assets[key]; if (isArray(asset)) { for (var i = 0; i < asset.length; i++) { emit([doc.queuedDate, key, i], asset[i].size); } } else { emit([doc.queuedDate, key], asset.size); } } } }",
+            "reduce": "_sum"
+        },
+        "integrations-to-prune": {
+            "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.assets && !doc.assetsPruned) { emit(doc.queuedDate, null); } }"
+        }
+    }
+}

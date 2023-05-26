@@ -1,0 +1,3 @@
+? [= Facility com.apple.xcsd] claim only
+# ? [N<= Level Info] file /Library/Developer/XcodeServer/Logs/xcsd.log mode=0644 format=std rotate=seq file_max=10M all_max=50M compress format='$Time $Host $(Sender)[$(PID):$(WorkerID)] [$(RequestID)] <$((Level)(str))>: $Message'
+* directory /Library/Developer/XcodeServer/Logs/xcsd mode=0755 compress ttl=7

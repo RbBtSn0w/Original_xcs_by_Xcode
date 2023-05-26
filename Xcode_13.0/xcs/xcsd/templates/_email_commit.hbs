@@ -1,0 +1,14 @@
+{{repository}} ({{branch}})<br /><br />
+
+{{#each commits}}
+<code style="color: rgb(83, 88, 95); font-size: 90%;"><b>{{commit_hash XCSCommitHash}}</b></code>&nbsp;&nbsp;&nbsp;{{contributor XCSCommitContributor}} - <span style="color: rgb(83, 88, 95); font-size: 90%;">{{format_date XCSCommitTimestamp}}</span>
+
+<p style="margin: 0; padding: 0; padding-left: 42pt; margin-bottom: 10pt;">
+{{{commit_message XCSCommitMessage}}}<br />
+
+{{#each XCSCommitCommitChangeFilePaths}}
+<span style="color: #808080;  font-size: 80%;">{{filePath}}</span><br />
+{{/each}}
+</p>  
+
+{{/each}}

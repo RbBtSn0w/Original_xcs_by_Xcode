@@ -1,0 +1,1 @@
+cmd_Release/logger.node := c++ -bundle -undefined dynamic_lookup -Wl,-search_paths_first -mmacosx-version-min=10.11 -arch x86_64 -L./Release  -o Release/logger.node Release/obj.target/logger/util/logger.o -framework Foundation

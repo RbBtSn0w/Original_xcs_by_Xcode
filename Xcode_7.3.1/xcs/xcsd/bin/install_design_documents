@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+
+var config = require('config'),
+    path = require('path'),
+    fs = require('fs'),
+    async = require('async'),
+    http = require('http');
+
+var designPath = path.join(__dirname, '../../xcscouch/_design');
+
+function isDocument(name) {
+    return name.indexOf('.') !== 0;
+}
+
+var documents = fs.readdirSync(designPath).filter(isDocument);
+
+async.each(documents, function (document, cb) {
+    var doc = {
+        "_id": '_design/' + document,
+        language: 'javascript',
+        views: {}
+    };
+    
+    var documentDir = path.join(designPath, document);
+    fs.readdir(documentDir, function (err, viewDocs) {
+        if (err) {
+            return cb(err);
+        }
+        
+        async.each(viewDocs.filter(isDocument), function (viewDoc, cb) {
+            var index, fnName, fnType;
+            if ((index = viewDoc.indexOf('_map.js')) > 0) {
+                fnName = viewDoc.slice(0, index);
+                fnType = 'map';
+            } else if ((index = viewDoc.indexOf('_reduce.js')) > 0) {
+                fnName = viewDoc.slice(0, index);
+                fnType = 'reduce';
+            } else {
+                console.error('View document ' + viewDoc + ' doesn\'t match a known view type.');
+                return;
+            }
+
+            fs.readFile(path.join(documentDir, viewDoc), function (err, fnContents) {
+                if (err) {
+                    return cb(err);
+                }
+                
+                var view = doc.views[fnName];
+                if (!view) {
+                    view = {};
+                    doc.views[fnName] = view;
+                }
+                
+                view[fnType] = fnContents.toString('utf8');
+                cb();
+            });
+        }, function (err) {
+            if (err) {
+                return cb(err);
+            }
+            
+            uploadDesignDocument(doc, cb);
+        });
+    });
+}, function (err) {
+    if (err) {
+        console.error("Couldn't install design documents: " + err);
+    } else {
+        console.log("Successfully installed design documents.");
+    }
+});
+
+function uploadDesignDocument(document, cb) {
+    var req = http.request({
+        port: 3355,
+        method: 'PUT',
+        path: '/xcs/' + document._id,
+        headers: {'Content-Type': 'application/json'},
+        agent: false
+    }, function (res) {
+        cb();
+    });
+    
+    req.on('error', function(err) {
+        console.error(err);
+        cb(err);
+    });
+    
+    req.write(JSON.stringify(document));
+    req.end();
+}

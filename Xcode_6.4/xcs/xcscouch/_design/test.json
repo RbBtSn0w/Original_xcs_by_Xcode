@@ -1,0 +1,18 @@
+{
+  "_id": "_design/test",
+  "views": {
+    "all-tests": {
+      "map": "function(doc) { if (doc.doc_type == 'test') { emit(doc._id, {_id: doc._id, _rev: doc._rev}); } }"
+    },
+    "test_results-all_devices-for-test-for-integration": {
+      "map": "function(doc) { if (doc.doc_type == 'test' && doc.integration && doc.keyPath) { emit([doc.testPath +' '+ doc.integration,doc._id], null); } }"
+    },
+    "tests-for-integration-by-device": {
+      "map": "function(doc) { if (doc.doc_type == 'test' && doc.integration && doc.deviceIdentifier) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.integration, doc.deviceIdentifier], null); } emit([doc.integration, doc.deviceIdentifier], null); } }"
+    },
+    "by-path": {
+      "map": "function(doc) { if (doc.doc_type == 'test' && doc.path && doc.integration) { var index = doc.path.slice(); index.splice(0, 0, doc.integration); emit(index, doc.path); } }",
+      "reduce": "function (key, values, rereduce) { return values[0]; }"
+    }
+  }
+}

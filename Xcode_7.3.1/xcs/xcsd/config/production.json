@@ -1,0 +1,42 @@
+{
+    "app": {
+        "httpPort": 20300,
+        "httpsPort": 20343,
+        "secureClientPort": 20344,
+        "socketPort": 20345,
+        "secureClientSocketPort": 20346,
+        "dashboardSocketPort": 20398,
+        "pidFile": "/Library/Developer/XcodeServer/Logs/xcsd.pid",
+        "secureCookies": true
+    },
+    "database": {
+        "port": 10355
+    },
+    "redis": {
+        "socket": "/Library/Developer/XcodeServer/Database/redis.sock"
+    },
+    "path": {
+        "assets": "/Library/Developer/XcodeServer/IntegrationAssets",
+        "codeCoverageCache": "/Library/Developer/XcodeServer/Caches/CodeCoverage",
+        "otaProfile": "/Library/Developer/XcodeServer/ConfigurationProfiles/ota.mobileconfig",
+        "sessionSecret": "/Library/Developer/XcodeServer/SharedSecrets/XCSDSessionSecret"
+    },
+    "keychain": {
+        "repositories": {
+            "path": "/Library/Developer/XcodeServer/Keychains/Repositories.keychain",
+            "sharedSecretPath": "/Library/Developer/XcodeServer/SharedSecrets/RepositoryKeychainSharedSecret"
+        },
+        "xcsd": {
+            "path": "/Library/Developer/XcodeServer/Keychains/xcsd.keychain",
+            "sharedSecretPath": "/Library/Developer/XcodeServer/SharedSecrets/XCSDKeychainSharedSecret"
+        }
+    },
+    "ssl": {
+        "keyPath": "/Library/Developer/XcodeServer/Certificates/xcsd.key",
+        "certificatePath": "/Library/Developer/XcodeServer/Certificates/xcsd.crt",
+        "ca": {
+            "client": "/Library/Developer/XcodeServer/Certificates/ClientCertificateAuthority/ClientCertificateAuthority certificates.pem",
+            "server": "/Library/Developer/XcodeServer/Certificates/ServerCertificateAuthority/ServerCertificateAuthority certificates.pem"
+        }
+    }
+}

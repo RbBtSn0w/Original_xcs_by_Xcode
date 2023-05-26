@@ -1,0 +1,10 @@
+{{#ifPresent versions}}
+<br />&nbsp;&nbsp;&nbsp;<span>OS X {{versions.os}}</span>
+<br />&nbsp;&nbsp;&nbsp;<span>Xcode {{versions.xcode}}</span>
+<br />&nbsp;&nbsp;&nbsp;<span>OS X Server {{versions.server}}</span>
+{{/ifPresent}}
+{{#ifPresent platforms}}
+{{#each platforms}}
+<br />&nbsp;&nbsp;&nbsp;<span>{{displayName}} SDK {{buildNumber}}</span>
+{{/each}}
+{{/ifPresent}}

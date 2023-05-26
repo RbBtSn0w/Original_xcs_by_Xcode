@@ -1,0 +1,23 @@
+#!/bin/bash
+
+TEST_PATH=/tmp/XCSTest
+mkdir -p $TEST_PATH
+
+XCSSECURITY=`which xcssecurity`
+if [ -z $XCSSECURITY ]; then
+    XCSSECURITY=`xcrun -f xcssecurity`
+fi
+
+if [ -z $XCSSECURITY ]; then
+    echo "error: couldn't find xcssecurity. Dumping env"
+    env
+    exit 1
+else
+    echo "Found xcssecurity at $XCSSECURITY"
+fi
+
+echo "repositories" > $TEST_PATH/RepositoryKeychainSharedSecret
+"$XCSSECURITY" keychain-create -k "$TEST_PATH/Repositories.keychain" -m "$TEST_PATH/RepositoryKeychainSharedSecret"
+
+echo "xcsd" > $TEST_PATH/XCSDKeychainSharedSecret
+"$XCSSECURITY" keychain-create -k "$TEST_PATH/xcsd.keychain" -m "$TEST_PATH/XCSDKeychainSharedSecret"

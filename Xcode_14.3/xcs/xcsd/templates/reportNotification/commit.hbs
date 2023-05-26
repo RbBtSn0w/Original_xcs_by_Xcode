@@ -1,0 +1,14 @@
+<tr>
+    <td width="15"></td>
+    <td colspan="3">
+        <span class="commit_contributor">{{render_contributor contributor}}</span>
+    </td>
+</tr>
+{{#each commits}} 
+<tr valign="top">
+    <td width="15"></td>
+    <td width="15"></td>
+    <td class="commit_message">{{commit_message XCSCommitMessage}}&nbsp;&nbsp;</td>
+    <td width="120"><span style="color: rgb(83, 88, 95); font-size: 90%; white-space: nowrap;" class="commit_date">{{format_date XCSCommitTimestamp}}</span></td>
+</tr>
+{{/each}}

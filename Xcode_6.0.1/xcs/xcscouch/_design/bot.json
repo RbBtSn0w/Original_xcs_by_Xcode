@@ -1,0 +1,58 @@
+{
+  "_id": "_design/bot",
+  "views": {
+    "integration_count-per-bot": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.bot._id && doc.bot.tinyID) { if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, 1); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, 1); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, 1); } }",
+      "reduce": "_count"
+    },
+    "all-bots": {
+      "map": "function(doc) { if (doc.doc_type == 'bot') { if (doc.xcsunittest) { emit([doc.xcsunittest, doc._id], { _id: doc._id, _rev: doc._rev }); } emit(doc._id, { _id: doc._id, _rev: doc._rev }); } }"
+    },
+    "success-streak": {
+      "map": "function(doc) { if ((doc.doc_type == 'integration') && (doc.result == 'succeeded')) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot._id, doc.success_streak], { integrationID: doc._id, success_streak: doc.success_streak, endedTime: doc.endedTime }); emit([doc.xcsunittest, doc.bot.tinyID, doc.success_streak], { integrationID: doc._id, success_streak: doc.success_streak, endedTime: doc.endedTime }); } emit([doc.bot._id, doc.success_streak], { integrationID: doc._id, success_streak: doc.success_streak, endedTime: doc.endedTime }); emit([doc.bot.tinyID, doc.success_streak], { integrationID: doc._id, success_streak: doc.success_streak, endedTime: doc.endedTime }); } }"
+    },
+    "last-clean-integration": {
+      "map": "function(doc) { if ((doc.doc_type == 'integration') && (doc.result == 'succeeded')) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot._id, doc.endedTime], { integrationID: doc._id, endedTime: doc.endedTime }); emit([doc.xcsunittest, doc.bot.tinyID, doc.endedTime], { integrationID: doc._id, endedTime: doc.endedTime }); } emit([doc.bot._id, doc.endedTime], { integrationID: doc._id, endedTime: doc.endedTime }); emit([doc.bot.tinyID, doc.endedTime], { integrationID: doc._id, endedTime: doc.endedTime }); } }"
+    },
+    "integrations-per-day": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, 1); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, 1); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, 1); } }",
+      "reduce": "_count"
+    },
+    "avg-integration-time": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.bot._id && doc.bot.tinyID && doc.duration && doc.endedTimeDate) { if(doc.xcsunittest) { var value1 = [doc.xcsunittest,doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, doc.duration); var value2 = [doc.xcsunittest,doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, doc.duration); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, doc.duration); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, doc.duration); } }",
+      "reduce": "_stats"
+    },
+    "test-addition-rate": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.bot._id && doc.bot.tinyID && doc.endedTimeDate && doc.buildResultSummary) { if (doc.xcsunittest) { var value1 = [doc.xcsunittest,doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, doc.buildResultSummary.testsChange); var value2 = [doc.xcsunittest,doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, doc.buildResultSummary.testsChange); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, doc.buildResultSummary.testsChange); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, doc.buildResultSummary.testsChange); } }",
+      "reduce": "_stats"
+    },
+    "analysis_warning_stats": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { var emitValue = (doc.buildResultSummary.analyzerWarningCount || 0); if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, emitValue); } }",
+      "reduce": "_stats"
+    },
+    "test_failure_stats": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { var emitValue = (doc.buildResultSummary.testFailureCount || 0); if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, emitValue); } }",
+      "reduce": "_stats"
+    },
+    "error_stats": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { var emitValue = (doc.buildResultSummary.errorCount || 0); if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, emitValue); } }",
+      "reduce": "_stats"
+    },
+    "regressed_perf_test_stats": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { var emitValue = (doc.buildResultSummary.regressedPerfTestCount || 0); if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, emitValue); } }",
+      "reduce": "_stats"
+    },
+    "warning_stats": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { var emitValue = (doc.buildResultSummary.warningCount || 0); if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, emitValue); } }",
+      "reduce": "_stats"
+    },
+    "improved_perf_test_stats": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { var emitValue = (doc.buildResultSummary.improvedPerfTestCount || 0); if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, emitValue); } }",
+      "reduce": "_stats"
+    },
+    "tests_stats": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.currentStep == 'completed' && doc.bot._id && doc.bot.tinyID) { var emitValue = (doc.buildResultSummary.testsCount || 0); if (doc.xcsunittest) { var value1 = [doc.xcsunittest, doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); } var value1 = [doc.bot._id]; value1 = value1.concat(doc.endedTimeDate); emit(value1, emitValue); var value2 = [doc.bot.tinyID]; value2 = value2.concat(doc.endedTimeDate); emit(value2, emitValue); } }",
+      "reduce": "_stats"
+    }
+  }
+}

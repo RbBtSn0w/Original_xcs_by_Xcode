@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.apple.xcsd</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Library/Developer/XcodeServer/CurrentXcodeSymlink/Contents/Developer/usr/share/xcs/Node/bin/node</string>
+		<string>/Library/Developer/XcodeServer/CurrentXcodeSymlink/Contents/Developer/usr/share/xcs/xcsd/app.js</string>
+	</array>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>DISABLE_STDIO_LOGGING</key>
+		<string>1</string>
+		<key>NODE_ENV</key>
+		<string>production</string>
+	</dict>
+	<key>UserName</key>
+	<string>_xcsd</string>
+	<key>GroupName</key>
+	<string>_xcs</string>
+	<key>StandardOutPath</key>
+	<string>/Library/Developer/XcodeServer/Logs/xcsd.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Library/Developer/XcodeServer/Logs/xcsd.log</string>
+</dict>
+</plist>

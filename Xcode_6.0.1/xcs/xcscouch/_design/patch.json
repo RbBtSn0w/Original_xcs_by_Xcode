@@ -1,0 +1,6 @@
+{
+  "_id": "_design/patch",
+  "updates": {
+    "inplace": "function(doc, req) { var body = JSON.parse(req.body); for (var key in body) { if (body.hasOwnProperty(key)) { doc[key] = body[key]; } } return [doc, JSON.stringify(doc)]; }"
+  }
+}

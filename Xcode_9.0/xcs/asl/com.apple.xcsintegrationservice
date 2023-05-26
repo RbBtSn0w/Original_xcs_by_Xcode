@@ -1,0 +1,2 @@
+? [= Facility com.apple.xcsintegrationservice] claim only
+* directory /Library/Developer/XcodeServer/Logs/XCSIntegrationService mode=0755 compress ttl=7

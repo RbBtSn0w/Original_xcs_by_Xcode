@@ -1,0 +1,11 @@
+{
+  "_id": "_design/issue",
+  "views": {
+    "all-issues": {
+      "map": "function(doc) { if (doc.doc_type == 'issue') { if (doc.xcsunittest) { emit([doc.xcsunittest,doc._id], { _id: doc._id, _rev: doc._rev }); } emit(doc._id, { _id: doc._id, _rev: doc._rev }); } }"
+    },
+    "issues-by-integration_id": {
+      "map": "function(doc) { if (doc.doc_type == 'issue' && doc.integration) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.integration], null); } emit(doc.integration, null); } }"
+    }
+  }
+}

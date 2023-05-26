@@ -1,0 +1,26 @@
+<table class="repository_item" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td class="repository_title" colspan="4"><a href="{{repository}}">{{repository}}</a> ({{branch}})</td>
+    </tr>
+    <tr><td colspan="4">&nbsp;</td></tr>
+    {{#each commits}}
+    <tr class="commit_item">
+        <td class="commit_sha" width="60" valign="top" style="color: rgb(83, 88, 95); font-weight: bold;">{{commit_hash commit.XCSCommitHash}}&nbsp;&nbsp;</td>
+        <td valign="top" style="white-space: nowrap; width: 1px;">
+            <table class="commit_issues_count" border="0" cellpadding="0" cellspacing="0">
+                {{number_of_issues issueTypes}}
+            </table>
+        </td>
+        <td>&nbsp;</td>
+        <td valign="top">
+            <span class="commit_item_name" style="white-space:nowrap;">{{render_contributor commit.XCSCommitContributor}} - <span style="color: rgb(83, 88, 95); font-size: 90%;">{{format_date commit.XCSCommitTimestamp}}</span></span><br>
+            <span class="commit_item_message" style="word-break:break-all;">{{commit_message commit.XCSCommitMessage}}</span><br>
+            {{#each commit.XCSCommitCommitChangeFilePaths}}
+                <span  class="commit_item_file_path" style="color: #808080; font-size: 80%; word-break:break-all;" class="file_path">{{filePath}}</span><br>
+            {{/each}}
+        </td>
+    </tr>
+    <tr><td colspan="3" style="height: 5px"></td></tr>
+    {{/each}}
+    <tr><td colspan="3">&nbsp;</td></tr>
+</table>

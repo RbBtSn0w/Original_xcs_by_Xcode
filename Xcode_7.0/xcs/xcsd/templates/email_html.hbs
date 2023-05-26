@@ -1,0 +1,46 @@
+<h2>{{> header}}</h2>
+<p>
+<strong>Server</strong>:<br />
+&nbsp;&nbsp;&nbsp;<span>{{hostname}}</span>
+{{> version_info}}
+<br /><br />
+    
+{{#if integration.buildResultSummary}}
+<strong>Summary</strong>:<br />
+{{results_description}}
+<br /><br />
+{{/if}}
+    
+{{issues_originators}}
+
+{{performance_issues}}
+    
+{{code_coverage}}
+
+{{#ifPresent commits}}
+<strong>Commits</strong>:<br />
+&nbsp;&nbsp;&nbsp;This integration includes commits from {{contributors}}.
+<br /><br />
+{{/ifPresent}}
+</p>
+
+
+{{> html_links}}
+
+{{#if config.includeIssueDetails}}
+{{service_issues}}
+{{issue_list "New" "freshIssues"}}
+{{issue_list "Unresolved" "unresolvedIssues"}}
+{{issue_list "Resolved" "resolvedIssues"}}
+{{/if}}
+
+{{#if config.includeCommitMessages}}
+{{#ifPresent commits}}
+<br>
+<h3>Commits ({{commits.length}})</h3>
+  {{#each commits}}
+  {{> commit}}
+  {{/each}}
+{{else}}
+{{/ifPresent}}
+{{/if}}

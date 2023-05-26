@@ -1,0 +1,17 @@
+{
+  "_id": "_design/filter",
+  "views": {
+    "last-completed-integration": {
+      "map": "function(doc) { if ((doc.doc_type == 'integration') && (doc.currentStep == 'completed' && doc.number && doc.bot._id)) { if (doc.xcsunittest) { if (doc.bot._id) { emit([doc.xcsunittest, doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.xcsunittest, doc.bot.tinyID, doc.number], doc.number); } } if (doc.bot._id) { emit([doc.bot._id, doc.number], doc.number); } if (doc.bot.tinyID) { emit([doc.bot.tinyID, doc.number], doc.number); } } }"
+    },
+    "integration-last-failed": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id && doc.result) { if (doc.bot._id && (doc.result !== 'succeeded')) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot._id, doc.result, doc.number], doc.number); } else { emit([doc.bot._id, doc.result, doc.number], doc.number); } } if (doc.bot.tinyID && (doc.result !== 'succeeded')) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot.tinyID, doc.result, doc.number], doc.number); } else { emit([doc.bot.tinyID, doc.result, doc.number], doc.number); } } } }"
+    },
+    "integration-last-succeeded": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id && doc.result) { if (doc.bot._id && (doc.result === 'succeeded')) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot._id, doc.result, doc.number], doc.number); } else { emit([doc.bot._id, doc.result, doc.number], doc.number); } } if (doc.bot.tinyID && (doc.result === 'succeeded')) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot.tinyID, doc.result, doc.number], doc.number); } else { emit([doc.bot.tinyID, doc.result, doc.number], doc.number); } } } }"
+    },
+    "integration-tag": {
+      "map": "function(doc) { if (doc.doc_type == 'integration' && doc.number && doc.bot._id && (doc.tags.length > 0)) { if (doc.bot._id) { for (var i = 0; i < doc.tags.length; i++) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot._id, doc.tags[i], doc.number], doc.number); } else { emit([doc.bot._id, doc.tags[i], doc.number], doc.number); } } } if (doc.bot.tinyID) { for (var i = 0; i < doc.tags.length; i++) { if (doc.xcsunittest) { emit([doc.xcsunittest, doc.bot.tinyID, doc.tags[i], doc.number], doc.number); } else { emit([doc.bot.tinyID, doc.tags[i], doc.number], doc.number); } } } } }"
+    }
+  }
+}

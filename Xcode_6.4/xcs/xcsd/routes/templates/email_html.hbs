@@ -1,0 +1,24 @@
+<h2>{{> header}}</h2>
+{{#if integration.buildResultSummary}}
+<p>Results: {{results_description}}</p>
+{{/if}}
+{{> html_links}}
+
+{{#if config.includeIssueDetails}}
+{{service_issues}}
+{{issue_list "New" "freshIssues"}}
+{{issue_list "Unresolved" "unresolvedIssues"}}
+{{issue_list "Resolved" "resolvedIssues"}}
+{{/if}}
+
+{{#ifPresent commits}}
+<br>
+<h3>Commits ({{commits.length}})</h3>
+{{#if config.includeCommitMessages}}
+  {{#each commits}}
+  {{> commit}}
+  {{/each}}
+{{else}}
+  This integration includes commits from {{contributors}}.
+{{/if}}
+{{/ifPresent}}

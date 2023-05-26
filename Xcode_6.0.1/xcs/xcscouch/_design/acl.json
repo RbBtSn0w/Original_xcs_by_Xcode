@@ -1,0 +1,8 @@
+{
+  "_id": "_design/acl",
+  "views": {
+    "all-acls": {
+      "map": "function(doc) { if (doc.doc_type == 'acl') { if (doc.xcsunittest) { emit(doc.xcsunittest, null); } else { emit('acl', null); } } }"
+    }
+  }
+}

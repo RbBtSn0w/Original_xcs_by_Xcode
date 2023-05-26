@@ -1,0 +1,52 @@
+{
+    "app": {
+        "httpPort": 3300,
+        "socketPort": 3345,
+        "maxSockets": 100,
+        "secureCookies": false
+    },
+    "database": {
+        "port": 3355,
+        "authTimeout": 10
+    },
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 3356
+    },
+    "upload": {
+        "dest": "/tmp/XCSTest/IntegrationAssets"
+    },
+    "path": {
+        "database": "/tmp/XCSTest/Database",
+        "assets": "/tmp/XCSTest/IntegrationAssets",
+        "provisioningProfiles": "/tmp/XCSTest/ProvisioningProfiles",
+        "codeCoverageCache": "/tmp/XCSTest/CodeCoverageCache",
+        "activityLogCache": "/tmp/XCSTest/ActivityLogCache",
+        "otaProfile": "/tmp/XCSTest/ota.mobileconfig",
+        "sessionSecret": "/tmp/XCSTest/XCSDSessionSecret",
+        "couchdbSecret": "/tmp/XCSTest/XCSDCouchDBSecret",
+        "createControlIntegrations": "/tmp/XCSTest/CreateControlIntegrations",
+        "appleInternal": "/tmp/XCSTest/AppleInternal"
+    },
+    "keychain": {
+        "repositories": {
+            "path": "/tmp/XCSTest/Repositories.keychain",
+            "sharedSecretPath": "/tmp/XCSTest/RepositoryKeychainSharedSecret"
+        },
+        "xcsd": {
+            "path": "/tmp/XCSTest/xcsd.keychain",
+            "sharedSecretPath": "/tmp/XCSTest/XCSDKeychainSharedSecret"
+        },
+        "provisioning": {
+            "path": "/tmp/XCSTest/provisioning.keychain",
+            "sharedSecretPath": "/tmp/XCSTest/ProvisioningKeychainSharedSecret"
+        }
+    },
+    "acl": {
+        "expandInBackground": false
+    },
+    "promise": {
+        "warnings": true,
+        "longStackTraces": true
+    }
+}

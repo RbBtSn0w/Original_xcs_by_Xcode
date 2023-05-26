@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title></title>
+        <style></style>
+    </head>
+    <body>
+        <table border="0" cellpadding="0" cellspacing="0" id="bodyTable" height="100%" width="100%">
+            <tr>
+                <td align="center" valign="top">
+                    <table border="0" cellpadding="0" cellspacing="0" id="emailContainer" width="100%">
+                        <tr>
+                            <td align="left" valign="top">
+                                <table border="0" cellpadding="0" cellspacing="0" id="emailHeader" width="100%">
+                                    <tr>
+                                        <td id="reportTitle" align="left" valign="top" style="font-size: 18px; font-weight: bold;">{{title}}</td>
+                                    </tr>
+                                    <tr><td>&nbsp;</td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top">
+
+                                <table border="0" cellpadding="0" cellspacing="0" id="reportSummaryTable" width="100%">
+                                    <tr>
+                                        <td id="reportSummary">{{report_summary this}}</td>
+                                    </tr>
+                                    
+                                    {{#if integration}}
+                                    <tr><td>&nbsp;</td></tr>
+                                    <tr>
+                                        <td id="links">{{links integration hostname trigger}}</td>
+                                    </tr>
+                                    {{/if}}
+                                    
+                                    <tr><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td></tr>
+
+                                    <tr>
+                                        <td style='font-size: 16px; font-weight: bold;'>Summary</td>
+                                    </tr>
+                                    
+                                    {{#unless configurationChanges}}
+                                    {{#unless listOfIssuesSummary}}
+                                    {{#unless commitsCount}}
+                                    {{#if (isEqual schedule "integration")}}
+                                    <tr>
+                                        <td>
+                                            <table border="0" cellpadding="0" cellspacing="0" id="reportIntegration" width="100%">
+                                                <tr>
+                                                    <td width="20">&nbsp;</td>
+                                                    <td>No new issues or commits were found in this integration.</td>
+                                                </tr>
+                                            </table>
+                                          </td>
+                                    </tr>  
+                                    {{/if}}
+                                    {{/unless}}
+                                    {{/unless}}
+                                    {{/unless}}
+                                    
+                                    <tr><td>&nbsp;</td></tr>
+
+                                    {{report_range this}}
+
+                                    {{#if configurationChanges}}
+                                    <tr>
+                                        <td>
+                                            <table border="0" cellpadding="0" cellspacing="0" id="reportSummary" width="100%">
+                                                <tr>
+                                                    <td style="font-size: 13px; font-weight: bold;" colspan=2>Bot Configuration Changes</td>
+                                                </tr>
+                                                {{configuration_changes_summary configurationChanges}}
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr><td>&nbsp;</td></tr>
+                                    {{/if}}
+
+                                    {{#if listOfIssuesSummary}}
+                                    <tr>
+                                        <td>
+                                            <table border="0" cellpadding="0" cellspacing="0" id="reportIntegrationResult" width="100%">
+                                                <tr>
+                                                    <td id="reportIntegrationResultTitle" style="font-size: 13px; font-weight: bold;" colspan=2>Integration Results</td>
+                                                </tr>
+                                                {{#each listOfIssuesSummary}}
+                                                <tr>
+                                                    <td width="20">&nbsp;</td>
+                                                    <td class="list_issues_summary">{{this}}</td>
+                                                </tr>
+                                                {{/each}}
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr><td>&nbsp;</td></tr>
+                                    {{/if}}
+
+                                    {{#if commitsCount}}
+                                    <tr>
+                                        <td>
+                                            <table border="0" cellpadding="0" cellspacing="0" id="reportCommitters" width="100%">
+                                                <tr>
+                                                    <td id="reportCommittersTitle" style="font-size: 13px; font-weight: bold;" colspan=2>Committers</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20">&nbsp;</td>
+                                                    <td>
+                                                        {{#each listOfCommitters}}
+                                                            <a class="list_committer" href="mailto:{{email}}">{{name}}</a>&nbsp;
+                                                        {{/each}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr><td>&nbsp;</td></tr>
+                                    {{/if}}
+
+                                    <tr><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td></tr>
+                                </table>
+
+                                {{#if trigger.emailConfiguration.includeBotConfiguration}}
+                                {{> bot_configuration}}
+                                {{/if}}
+
+                                {{#if trigger.emailConfiguration.includeIssueDetails}}
+                                {{#if issuesCount}}
+                                {{> report_issue_details}}
+                                {{else}}
+                                {{> no_report_issue_details}}
+                                {{/if}}
+                                {{/if}}
+
+                                {{#if trigger.emailConfiguration.includeCommitMessages}}
+                                {{#if commitsCount}}
+                                {{> report_commit_messages}}
+                                {{else}}
+                                {{> no_report_commit_messages}}
+                                {{/if}}
+                                {{/if}}
+
+                                {{#unless trigger}}
+                                {{> bot_configuration}}
+                                
+                                {{#if issuesCount}}
+                                {{> report_issue_details}}
+                                {{else}}
+                                {{> no_report_issue_details}}
+                                {{/if}}
+
+                                {{#if commitsCount}}
+                                {{> report_commit_messages}}
+                                {{else}}
+                                {{> no_report_commit_messages}}
+                                {{/if}}
+                                {{/unless}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+    </body>
+</html>

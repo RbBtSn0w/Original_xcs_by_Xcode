@@ -1,0 +1,5 @@
+[{release,"OTP  APN 181 01","R16B01","5.10.2",
+          [{kernel,"2.16.2","/SourceCache/XCSCouchDB/XCSCouchDB-1/build/lib/erlang/lib/kernel-2.16.2"},
+           {stdlib,"1.19.2","/SourceCache/XCSCouchDB/XCSCouchDB-1/build/lib/erlang/lib/stdlib-1.19.2"},
+           {sasl,"2.3.2","/SourceCache/XCSCouchDB/XCSCouchDB-1/build/lib/erlang/lib/sasl-2.3.2"}],
+          permanent}].

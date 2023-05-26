@@ -1,0 +1,11 @@
+{
+  "_id": "_design/device",
+  "views": {
+    "all-devices": {
+      "map": "function(doc) { if (doc.doc_type == 'device') { if (doc.xcsunittest) { emit([doc.xcsunittest,doc._id], { _id: doc._id, _rev: doc._rev }); } emit(doc._id, { _id: doc._id, _rev: doc._rev }); } }"
+    },
+    "this-device": {
+      "map": "function(doc) { if ((doc.doc_type == 'device') && doc.isServer) { emit(doc.doc_type, null); } }"
+    }
+  }
+}

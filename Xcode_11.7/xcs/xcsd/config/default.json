@@ -1,0 +1,27 @@
+{
+    "app": {
+        "host": "127.0.0.1",
+        "maxSockets": 100
+    },
+    "database": {
+        "host": "127.0.0.1",
+        "database": "xcs"
+    },
+    "redis": {
+        "prefix": "session:"
+    },
+    "acl": {
+        "expandInBackground": true
+    },
+    "promise": {
+        "warnings": false,
+        "longStackTraces": false,
+        "cancellation": false
+    },
+    "upload": {
+        "limits": {
+            "fieldNameSize": 100,
+            "fileSize": 10737418240
+        }
+    }
+}

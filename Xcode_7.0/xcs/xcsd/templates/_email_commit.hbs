@@ -1,0 +1,12 @@
+<p>
+    {{! TOOD Show repository }}
+    {{contributor XCSCommitContributor}}: {{XCSCommitMessage}}
+</p>
+<p>
+<code>
+    {{#each XCSCommitCommitChangeFilePaths}}
+    {{filePath}}<br>
+    {{/each}}
+</code>
+</p>
+<p style="color: #808080; font-size: 90%">{{XCSCommitHash}}</p>

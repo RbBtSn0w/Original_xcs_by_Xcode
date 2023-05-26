@@ -1,0 +1,15 @@
+{{#ifPresent versions}}
+{{#if appleInternal}}
+{{#if versions.XCSApi}}
+<span>Server API v{{versions.XCSApi}}</span><br>
+{{/if}}
+{{/if}}
+<span>macOS {{versions.os}}</span><br>
+<span>Xcode {{versions.xcode}}{{#if versions.server}}, Server {{versions.server}}{{/if}}</span><br>
+{{/ifPresent}}
+{{#if appleInternal}}
+{{#if platforms}}
+<span>{{platformsString}}</span><br>
+{{/if}}
+{{/if}}
+{{override_toolchain integration.bot}}

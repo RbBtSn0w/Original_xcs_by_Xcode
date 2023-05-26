@@ -1,0 +1,9 @@
+{
+  "name": "test",
+  "version": "0.0.1",
+  "author": "Node Security Project",
+  "dependencies": {
+    "never-heard-about": "*",
+    "qs": "^0.5"
+  }
+}

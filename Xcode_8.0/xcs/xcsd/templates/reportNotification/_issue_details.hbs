@@ -1,0 +1,46 @@
+<table border="0" cellpadding="0" cellspacing="0" id="issuesSummary">
+    {{#if newOpenIssues}}
+    <tr><td style="font-size: 16px; font-weight: bold;">Open Issues Introduced {{issue_schedule_string schedule}}</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>
+            {{report_issues_list newOpenIssues issuesDict commitsByHash}}
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    {{/if}}
+    
+    {{#if oldOpenIssues}}
+    <tr><td style="font-size: 16px; font-weight: bold;">Open Issues Introduced Before {{issue_schedule schedule}}</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>
+            {{report_issues_list oldOpenIssues issuesDict commitsByHash}}
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    {{/if}}
+
+    {{#if newResolvedIssues}}
+    <tr><td style="font-size: 16px; font-weight: bold;">Issues Introduced and Resolved {{issue_schedule_string schedule}}</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>
+            {{report_issues_list newResolvedIssues issuesDict commitsByHash}}
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    {{/if}}
+    
+    {{#if oldResolvedIssues}}
+    <tr><td style="font-size: 16px; font-weight: bold;">Older Issues Resolved {{issue_schedule_string schedule}}</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>
+            {{report_issues_list oldResolvedIssues issuesDict commitsByHash}}
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    {{/if}}
+    <tr><td>&nbsp;</td></tr>
+</table>

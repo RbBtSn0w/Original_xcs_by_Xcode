@@ -1,0 +1,45 @@
+<h2>{{> header}}</h2>
+
+{{> html_links}}
+<br /><br />
+
+<strong>Server</strong>:<br />
+<p style="margin: 0; padding: 0; padding-left: 17pt; margin-bottom: 10pt;">
+    <span><a href="https://{{hostname}}/xcode">{{hostname}}</a></span><br>
+    {{> version_info}}
+</p>
+    
+{{#if integration.buildResultSummary}}
+<strong>Summary</strong>:<br />
+<p style="margin: 0; padding: 0; padding-left: 17pt; margin-bottom: 10pt;">
+    {{results_description}}
+</p>
+{{/if}}
+    
+{{issues_originators}}
+
+{{performance_issues}}
+    
+{{code_coverage}}
+
+{{#ifPresent commits}}
+<strong>Committers</strong>:<br />
+<p style="margin: 0; padding: 0; padding-left: 17pt; margin-bottom: 20pt;">{{contributors}}</p>
+{{/ifPresent}}
+
+{{#if config.includeIssueDetails}}
+{{service_issues}}
+{{issue_list "New" "freshIssues"}}
+{{issue_list "Unresolved" "unresolvedIssues"}}
+{{issue_list "Resolved" "resolvedIssues"}}
+{{/if}}
+
+{{#if config.includeCommitMessages}}
+{{#ifPresent commits}}
+<h3>Commits ({{commits_length}})</h3>
+  {{#each commits}}
+  {{> commit}}
+  {{/each}}
+{{else}}
+{{/ifPresent}}
+{{/if}}

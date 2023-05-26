@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Logs are downloading...</title>
+        <style>
+            body {background-color: #F9F9F9; font-family: "HelveticaNeue-Light", "Helvetica Neue", Arial, Geneva, sans-serif; position: absolute; font-weight: lighter; height: 100%; width: 100%; margin: 0;}
+            #main {position: absolute; height: 30%; width: 100%; top: 50%; margin-top: -5%; text-align: center;}
+            #logsAreDownloading {font-size: 30px; margin-bottom: 7px; color: #1A1A1A;}
+            #link {font-size: 12px; color: #9B9B9B;}
+            a {color: #9B9B9B; text-decoration: none; cursor: pointer;}
+        </style>
+        <script type="text/javascript">
+            var path = window.location.pathname;
+            var timeout = null;
+            var id = null;
+            
+            function getLogsLink() {
+                return window.location.protocol+'//'+window.location.hostname+'/xcode/internal/api/integrations/'+id+'/assets';
+            }
+            
+            function redirect() {
+                if (timeout !== null) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                }
+                window.location = getLogsLink();
+            }
+            
+            document.onreadystatechange = () => {
+                if (document.readyState === "interactive") {
+                    if (path) {
+                        id = path.match(/\/integrations\/([a-z0-9]+)\/download_logs/);
+                        if (id && id.length && id.length == 2) {
+                            id = id[1];
+                            timeout = setTimeout(redirect, 1000);
+
+                            document.querySelector("#link").setAttribute('href', getLogsLink());
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="logsAreDownloading">Downloading Logs…</div>
+            <div id="link"><a href="">Click here if your download does not start automatically.</a></div>
+        </div>
+    </body>
+</html>

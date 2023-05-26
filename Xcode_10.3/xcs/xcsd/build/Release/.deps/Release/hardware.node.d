@@ -1,0 +1,1 @@
+cmd_Release/hardware.node := c++ -bundle -undefined dynamic_lookup -Wl,-search_paths_first -mmacosx-version-min=10.10 -arch x86_64 -L./Release  -o Release/hardware.node Release/obj.target/hardware/util/hardware.o -framework Foundation -framework SystemConfiguration

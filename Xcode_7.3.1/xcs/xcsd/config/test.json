@@ -1,0 +1,34 @@
+{
+    "app": {
+        "httpPort": 3300,
+        "socketPort": 3345,
+        "maxSockets": 100,
+        "secureCookies": false
+    },
+    "database": {
+        "port": 3355
+    },
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 3356
+    },
+    "path": {
+        "assets": "/tmp/XCSTest/IntegrationAssets",
+        "codeCoverageCache": "/tmp/XCSTest/CodeCoverageCache",
+        "otaProfile": "/tmp/XCSTest/ota.mobileconfig",
+        "sessionSecret": "/tmp/XCSTest/XCSDSessionSecret"
+    },
+    "keychain": {
+        "repositories": {
+            "path": "/tmp/XCSTest/Repositories.keychain",
+            "sharedSecretPath": "/tmp/XCSTest/RepositoryKeychainSharedSecret"
+        },
+        "xcsd": {
+            "path": "/tmp/XCSTest/xcsd.keychain",
+            "sharedSecretPath": "/tmp/XCSTest/XCSDKeychainSharedSecret"
+        }
+    },
+	"acl": {
+		"expandInBackground": false
+	}
+}

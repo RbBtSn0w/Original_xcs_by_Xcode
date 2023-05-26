@@ -1,0 +1,73 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.botIcon {
+    float: left;
+    width: 180px;
+    height: 180px;
+    margin-right: 25px;
+    position: relative;
+    left: -10px;
+}
+
+.theme-dropdown .dropdown-menu {
+    position: static;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+    margin: 5px 0;
+}
+
+.service-panel .buttons .btn.action {
+    margin-left: 5px;
+}
+.service-panel .buttons .btn.warnings {
+    display: none;
+}
+.service-panel .buttons .btn.disconnect {
+    display: none;
+}
+.service-panel.connected .buttons .btn.connect, .service-panel.connecting .buttons .btn.connect {
+    display: none;
+}
+.service-panel.connected .buttons .btn.disconnect {
+    display: block;
+}
+.service-panel.warnings .buttons .btn.warnings {
+    display: block;
+}
+
+.popover-content h2 {
+    margin: 8px 0;
+    font-size: 14pt;
+}
+
+.popover {
+    width: 400px;
+}
+
+.popover-content .issue {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.popover-content .issue:first-child {
+    margin-top: 0;
+}
+
+.modal label {
+    margin-top: 10px;
+}
+
+.modal .prog {
+    display: none;
+}
+.modal.working .prep, .modal.working .btn {
+    display: none;
+}
+.modal.working .prog {
+    display: block;
+}

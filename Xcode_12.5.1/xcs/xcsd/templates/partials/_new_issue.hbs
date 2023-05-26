@@ -1,0 +1,27 @@
+<table border="0" cellpadding="0" cellspacing="0" class="issueItem" width="100%">
+    <tr>
+        <td width="20"></td>
+        <td colspan="2">{{issue_type_introduction issue}}</td>
+    </tr>
+    {{#if issue.documentFilePath}}
+    <tr>
+        <td width="20"></td>
+        <td colspan="2">{{issue_file_path_introduction issue}}</td>
+    </tr>
+    {{/if}}
+    <tr>
+        <td width="20"></td>
+        <td colspan="2" class="issue_message" style="color: rgb(83, 88, 95); word-break:break-all;">{{issue_message issue}}</td>
+    </tr>
+    <tr>
+        <td width="20"></td>
+        <td colspan="2" class="issue_introduced_by" style="color: #999999;">{{issue_introduced_by issue commitsByHash}}</td>
+    </tr>
+    {{#if issue.associations}}
+    <tr>
+        <td width="20"></td>
+        <td colspan="2" class="tracked_by_radar" style="color: #999999;">{{tracked_by_radar issue}}</td>
+    </tr>
+    {{/if}}
+    <tr><td colspan="3">&nbsp;</td></tr>
+</table>
