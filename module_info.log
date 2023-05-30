@@ -1,0 +1,76 @@
+-------------------Node-------------------
+In Xcode_10.0   module: Node       bin: node       version: v4.2.2 
+In Xcode_10.3   module: Node       bin: node       version: v4.2.2 
+In Xcode_11.0   module: Node       bin: node       version: v4.2.2 
+In Xcode_11.7   module: Node       bin: node       version: v4.2.2 
+In Xcode_12.0   module: Node       bin: node       version: v12.8.0 
+In Xcode_12.5.1 module: Node       bin: node       version: v12.8.0 
+In Xcode_13.0   module: Node       bin: node       version: v12.8.0 
+In Xcode_13.4.1 module: Node       bin: node       version: v12.8.0 
+In Xcode_14.0   module: Node       bin: node       version: v12.8.0 
+In Xcode_14.3   module: Node       bin: node       version: v12.8.0 
+In Xcode_6.0.1  module: Node       bin: node       version: v0.10.26 
+In Xcode_6.4    module: Node       bin: node       version: v0.10.26 
+In Xcode_7.0    module: Node       bin: node       version: v0.10.32 
+In Xcode_7.3.1  module: Node       bin: node       version: v4.2.2 
+In Xcode_8.0    module: Node       bin: node       version: v4.2.2 
+In Xcode_8.3.3  module: Node       bin: node       version: v4.5.0 
+In Xcode_9.0    module: Node       bin: node       version: v4.2.2 
+In Xcode_9.4.1  module: Node       bin: node       version: v4.2.2 
+-------------------Redis-------------------
+In Xcode_10.0   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=ac32c87334078f64 
+In Xcode_10.3   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=ac32c87334078f64 
+In Xcode_11.0   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=ac32c87334078f64 
+In Xcode_11.7   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=b456cbd04dd75066 
+In Xcode_12.0   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=43dfc3387ee9a217 
+In Xcode_12.5.1 module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=78b692bcf1b5986c 
+In Xcode_13.0   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=dd5d2415efc5c363 
+In Xcode_13.4.1 module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=dd5d2415efc5c363 
+In Xcode_14.0   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=df4d070d34bcdfbf 
+In Xcode_14.3   module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=a34a4dbc6090c717 
+In Xcode_6.0.1  module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=c4dffda9168043f5 
+In Xcode_6.4    module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=671b24c9432cd4dd 
+In Xcode_7.0    module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=7b8e88471c079420 
+In Xcode_7.3.1  module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=c7f9c069d7d106fd 
+In Xcode_8.0    module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=973a7588f961c7b 
+In Xcode_8.3.3  module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=a069505d9a7ecdce 
+In Xcode_9.0    module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=86dd73d94e2981a1 
+In Xcode_9.4.1  module: Redis      bin: redis-server version: Redis server v=2.8.12 sha=00000000:0 malloc=libc bits=64 build=b456cbd04dd75066 
+-------------------Nginx-------------------
+In Xcode_10.0   module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_10.3   module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_11.0   module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_11.7   module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_12.0   module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_12.5.1 module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_13.0   module: Nginx      bin: nginx      version: nginx version: nginx/1.21.0 
+In Xcode_13.4.1 module: Nginx      bin: nginx      version: nginx version: nginx/1.21.0 
+In Xcode_14.0   module: Nginx      bin: nginx      version: nginx version: nginx/1.21.0 
+In Xcode_14.3   module: Nginx      bin: nginx      version: nginx version: nginx/1.21.0 
+Not find Nginx in /Users/rbbtsn0w/Documents/GitHub/Original_xcs_by_Xcode/Xcode_6.0.1
+Not find Nginx in /Users/rbbtsn0w/Documents/GitHub/Original_xcs_by_Xcode/Xcode_6.4
+In Xcode_7.0    module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_7.3.1  module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_8.0    module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_8.3.3  module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_9.0    module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+In Xcode_9.4.1  module: Nginx      bin: nginx      version: nginx version: nginx/1.7.10 
+-------------------CouchDB-------------------
+In Xcode_10.0   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_10.3   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_11.0   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_11.7   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_12.0   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_12.5.1 module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_13.0   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_13.4.1 module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_14.0   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_14.3   module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
+In Xcode_6.0.1  module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.5.0 
+In Xcode_6.4    module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.5.0 
+In Xcode_7.0    module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.6.1 
+In Xcode_7.3.1  module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.6.1 
+In Xcode_8.0    module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.6.1 
+In Xcode_8.3.3  module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.6.1 
+In Xcode_9.0    module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.6.1 
+In Xcode_9.4.1  module: CouchDB    bin: couchdb    version: couchdb - Apache CouchDB 1.7.1 
